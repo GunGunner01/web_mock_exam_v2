@@ -23,7 +23,19 @@ public class MessageServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		logger.info("Getting messages");
-		List<ChatMessage> messages = chatService.getMessages();
+
+//	------------------------------------- Ex. 1 ------------------------------------------------------
+//		http://localhost:8080/api/messages?topic=simpsons
+//		http://localhost:8080/api/messages
+		String topic = request.getParameter("topic");
+		List<ChatMessage> messages;
+
+		if (topic != null && !topic.isEmpty()) {
+			messages = chatService.getMessages(topic);
+		} else {
+			messages = chatService.getMessages();
+		}
+//	_____________________________________ Ex. 1 ______________________________________________________
 		response.setStatus(HttpServletResponse.SC_OK);
 		response.setContentType("application/json");
 		objectMapper.writeValue(response.getOutputStream(), messages);

@@ -30,6 +30,19 @@ public class ChatService {
 		return messages;
 	}
 
+//	------------------------------------- Ex. 1 ------------------------------------------------------
+	public List<ChatMessage> getMessages(String topic) {
+		List<ChatMessage> output = new ArrayList<>();
+
+        for (ChatMessage message : messages) {
+            if (message.getTopic().equalsIgnoreCase(topic)) {
+                output.add(message);
+            }
+        }
+		return output;
+	}
+//	_____________________________________ Ex. 1 ______________________________________________________
+
 	public void addMessage(ChatMessage message) {
 		message.setId(++lastId);
 		messages.add(message);
