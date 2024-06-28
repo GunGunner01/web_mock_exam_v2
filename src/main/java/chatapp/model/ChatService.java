@@ -28,19 +28,19 @@ public class ChatService {
 		return messages;
 	}
 
-//	------------------------------------- Ex. 1 ------------------------------------------------------
+	//	------------------------------------- Ex. 1 ------------------------------------------------------
 	public List<ChatMessage> getMessages(String topic) {
 		List<ChatMessage> output = new ArrayList<>();
 
-        for (ChatMessage message : messages) {
-            if (message.getTopic().equalsIgnoreCase(topic)) {
-                output.add(message);
-            }
-        }
+		for (ChatMessage message : messages) {
+			if (message.getTopic().equalsIgnoreCase(topic)) {
+				output.add(message);
+			}
+		}
 		return output;
 	}
-//	_____________________________________ Ex. 1 ______________________________________________________
-//	------------------------------------- Ex. 2 ------------------------------------------------------
+	//	_____________________________________ Ex. 1 ______________________________________________________
+	//	------------------------------------- Ex. 2 ------------------------------------------------------
 	public List<String> getTopics() {
 
 		Set<String> topicsSet = new HashSet<>();
@@ -49,10 +49,23 @@ public class ChatService {
 		}
 		return new ArrayList<>(topicsSet);
 	}
-//	_____________________________________ Ex. 2 ______________________________________________________
+	//	_____________________________________ Ex. 2 ______________________________________________________
 
 	public void addMessage(ChatMessage message) {
 		message.setId(++lastId);
 		messages.add(message);
 	}
+
+	//	------------------------------------- Ex. 3 ------------------------------------------------------
+	public void removeMessage(Integer id) {
+		for (int i = 0; i < messages.size(); ++i) {
+			ChatMessage message = messages.get(i);
+			if (message.getId().equals(id)) {
+				messages.remove(i);
+				break; // Exit the loop once the message is found and removed
+			}
+		}
+	}
+	//	_____________________________________ Ex. 3 ______________________________________________________
+
 }
