@@ -2,12 +2,22 @@ const BASE_URL = '/api';
 const MEDIA_TYPE = 'application/json';
 
 export const service = {
-	getMessages: function() {
-		return ajax('/messages', 'GET')
+	getMessages: function(topic) {
+		let path = '/messages';
+		if (topic) {
+			path += `?topic=${encodeURIComponent(topic)}`;
+		}
+		return ajax(path, 'GET')
 			.then(response => response.ok ? response.json() : Promise.reject(response));
 	},
 	postMessage: function(message) {
 		return ajax('/messages', 'POST', message)
+			.then(response => response.ok ? response.json() : Promise.reject(response));
+	},
+	// --------------------------------------- Ex. 4 --------------------------------------
+	// _______________________________________ Ex. 4 ______________________________________
+	getTopics: function() {
+		return ajax('/topics', 'GET')
 			.then(response => response.ok ? response.json() : Promise.reject(response));
 	}
 };
