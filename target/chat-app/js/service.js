@@ -3,10 +3,12 @@ const MEDIA_TYPE = 'application/json';
 
 export const service = {
 	getMessages: function(topic) {
+		// --------------------------------------- Ex. 4 --------------------------------------
 		let path = '/messages';
 		if (topic) {
 			path += `?topic=${encodeURIComponent(topic)}`;
 		}
+		// _______________________________________ Ex. 4 ______________________________________
 		return ajax(path, 'GET')
 			.then(response => response.ok ? response.json() : Promise.reject(response));
 	},
@@ -15,11 +17,11 @@ export const service = {
 			.then(response => response.ok ? response.json() : Promise.reject(response));
 	},
 	// --------------------------------------- Ex. 4 --------------------------------------
-	// _______________________________________ Ex. 4 ______________________________________
 	getTopics: function() {
 		return ajax('/topics', 'GET')
 			.then(response => response.ok ? response.json() : Promise.reject(response));
 	}
+	// _______________________________________ Ex. 4 ______________________________________
 };
 
 function ajax(path, method, data, user) {
