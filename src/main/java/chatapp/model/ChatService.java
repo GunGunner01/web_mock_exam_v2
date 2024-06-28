@@ -1,8 +1,6 @@
 package chatapp.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ChatService {
 
@@ -42,6 +40,16 @@ public class ChatService {
 		return output;
 	}
 //	_____________________________________ Ex. 1 ______________________________________________________
+//	------------------------------------- Ex. 2 ------------------------------------------------------
+	public List<String> getTopics() {
+
+		Set<String> topicsSet = new HashSet<>();
+		for (ChatMessage message : messages) {
+			topicsSet.add(message.getTopic());
+		}
+		return new ArrayList<>(topicsSet);
+	}
+//	_____________________________________ Ex. 2 ______________________________________________________
 
 	public void addMessage(ChatMessage message) {
 		message.setId(++lastId);
